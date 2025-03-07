@@ -1,2 +1,12 @@
-<h1>Referrals#show</h1>
-<p>Find me in app/views/referrals/show.html.erb</p>
+<h1><%= t("referrals.show.title") %></h1>
+
+<% if @referral %>
+  <p><%= t("referrals.show.server") %>: <%= @server.name %></p>
+  <p><%= t("referrals.show.host") %>: <%= @server.host %></p>
+  <p><%= t("referrals.show.username") %>: <%= @server.username %></p>
+  <p><%= t("referrals.show.password") %>: <%= @server.password %></p>
+<% else %>
+  <p><%= t("referrals.alert.invalid") %></p>
+<% end %>
+
+<%= link_to t("servers.index.title"), servers_path %>

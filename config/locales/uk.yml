@@ -1,0 +1,22 @@
+uk:
+  servers:
+    index:
+      title: "Список серверів"
+      name: "Назва"
+      username: "Юзер"
+      host: "Хост"
+      actions: "Дії"
+      create_referral: "Створити реферальне посилання"
+      add_server: "Додати сервер"
+    new:
+      title: "Новий сервер"
+    notice:
+      created: "Сервер створено!"
+    alert:
+      access_denied: "Доступ заборонено!"
+  referrals:
+    notice:
+      created: "Реферальне посилання створено: %{url}"
+    alert:
+      invalid: "Посилання недійсне або прострочене!"
+      error: "Помилка!"

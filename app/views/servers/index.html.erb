@@ -1,2 +1,30 @@
-<h1>Servers#index</h1>
-<p>Find me in app/views/servers/index.html.erb</p>
+<h1><%= t("servers.index.title") %></h1>
+
+<%= turbo_frame_tag "servers_list" do %>
+  <% cache ["servers_list", current_user, Server.maximum(:updated_at)] do %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= t("servers.index.name") %></th>
+          <th><%= t("servers.index.username") %></th>
+          <th><%= t("servers.index.host") %></th>
+          <th><%= t("servers.index.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @servers.each do |server| %>
+          <tr>
+            <td><%= server.name %></td>
+            <td><%= server.username %></td>
+            <td><%= server.host %></td>
+            <td><%= link_to t("servers.index.create_referral"), referrals_path(server_id: server.id), method: :post, data: { turbo_method: :post } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= link_to t("servers.index.add_server"), new_server_path %>
+<% end %>

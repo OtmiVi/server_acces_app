@@ -1,2 +1,15 @@
-<h1>Servers#new</h1>
-<p>Find me in app/views/servers/new.html.erb</p>
+<h1><%= t("servers.new.title") %></h1>
+
+<%= turbo_frame_tag "new_server" do %>
+  <%= form_with(model: @server, data: { turbo: true }) do |form| %>
+    <%= form.label :name, t("servers.index.name") %>
+    <%= form.text_field :name %>
+    <%= form.label :username, t("servers.index.username") %>
+    <%= form.text_field :username %>
+    <%= form.label :host, t("servers.index.host") %>
+    <%= form.text_field :host %>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    <%= form.submit %>
+  <% end %>
+<% end %>

@@ -7,6 +7,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
     <%= yield :head %>
 
@@ -19,10 +21,34 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+  
+    <div>
+      <%= link_to "Українська", user_signed_in? ? authenticated_root_path(locale: :uk) : unauthenticated_root_path(locale: :uk) %> |
+      <%= link_to "English", user_signed_in? ? authenticated_root_path(locale: :en) : unauthenticated_root_path(locale: :en) %>
+    </div>
+    <% if user_signed_in? %>
+      <div>
+        <span>Вітаємо, <%= current_user.email %>!</span>
+        <%= link_to "Вийти", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to "Увійти", new_user_session_path %>
+        <%= link_to "Зареєструватися", new_user_registration_path %>
+      </div>
+    <% end %>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>

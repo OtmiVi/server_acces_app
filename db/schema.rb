@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_171934) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_210929) do
   create_table "referrals", force: :cascade do |t|
     t.string "token"
     t.integer "server_id", null: false
-    t.integer "user_id", null: false
     t.datetime "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["server_id"], name: "index_referrals_on_server_id"
-    t.index ["user_id"], name: "index_referrals_on_user_id"
   end
 
   create_table "servers", force: :cascade do |t|
@@ -27,10 +25,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_171934) do
     t.string "username"
     t.string "host"
     t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "servers_users", force: :cascade do |t|
+    t.integer "server_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_servers_on_user_id"
+    t.index ["server_id", "user_id"], name: "index_servers_users_on_server_id_and_user_id", unique: true
+    t.index ["server_id"], name: "index_servers_users_on_server_id"
+    t.index ["user_id"], name: "index_servers_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +53,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_171934) do
   end
 
   add_foreign_key "referrals", "servers"
-  add_foreign_key "referrals", "users"
-  add_foreign_key "servers", "users"
+  add_foreign_key "servers_users", "servers"
+  add_foreign_key "servers_users", "users"
 end

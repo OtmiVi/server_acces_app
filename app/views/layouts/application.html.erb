@@ -26,8 +26,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-  
+<body>
+  <header>
     <div>
       <%= link_to "Українська", user_signed_in? ? authenticated_root_path(locale: :uk) : unauthenticated_root_path(locale: :uk) %> |
       <%= link_to "English", user_signed_in? ? authenticated_root_path(locale: :en) : unauthenticated_root_path(locale: :en) %>
@@ -43,12 +43,18 @@
         <%= link_to "Зареєструватися", new_user_registration_path %>
       </div>
     <% end %>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-    <%= yield %>
-  </body>
+  </header>
+
+  <%= yield %>
+
+  <script>
+    function copyReferralLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Посилання скопійовано до буфера обміну!');
+      }).catch(err => {
+        console.error('Помилка копіювання: ', err);
+      });
+    }
+  </script>
+</body>
 </html>

@@ -1,5 +1,4 @@
 class Referral < ApplicationRecord
-  belongs_to :user
   belongs_to :server
   before_create :generate_token
 

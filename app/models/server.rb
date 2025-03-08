@@ -1,5 +1,6 @@
 class Server < ApplicationRecord
-  belongs_to :user
+  has_many :servers_users
+  has_many :users, through: :servers_users
   #encrypts :password
   validates :name, :username, :host, :password, presence: true
 end

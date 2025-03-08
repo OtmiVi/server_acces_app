@@ -1,0 +1,11 @@
+<% if notice %>
+  <p class="notice">
+    <%= notice %>
+    <% if notice.include?("http") %>
+      <button onclick="copyReferralLink('<%= notice.match(/http[s]?:\/\/[^\s]+/).to_s %>')">Копіювати</button>
+    <% end %>
+  </p>
+<% end %>
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %>

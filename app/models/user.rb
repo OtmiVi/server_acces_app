@@ -5,10 +5,10 @@ class User < ApplicationRecord
   has_many :referrals, dependent: :destroy
 
   def admin?
-    role == 'admin'
+    role == "admin"
   end
 
   def user?
-    role == 'user'
+    role == "user"
   end
 end

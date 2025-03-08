@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :servers
-  resources :referrals, only: [:create, :show], param: :token
-  
+  resources :referrals, only: [ :create, :show ], param: :token
+
   authenticated :user do
     root "servers#index", as: :authenticated_root
   end
-  
+
   unauthenticated do
     devise_scope :user do
       root "devise/sessions#new", as: :unauthenticated_root

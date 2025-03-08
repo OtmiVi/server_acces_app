@@ -1,5 +1,5 @@
 class ReferralsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [ :show ]
 
   def create
     @server = Server.find(params[:server_id])

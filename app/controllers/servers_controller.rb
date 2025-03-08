@@ -1,6 +1,6 @@
 class ServersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_admin, only: [:new, :create]
+  before_action :ensure_admin, only: [ :new, :create ]
 
   def index
     @servers = current_user.servers

@@ -6,7 +6,7 @@ class CreateServersUsers < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :servers_users, [:server_id, :user_id], unique: true
+    add_index :servers_users, [ :server_id, :user_id ], unique: true
 
     remove_reference :servers, :user, foreign_key: true
   end

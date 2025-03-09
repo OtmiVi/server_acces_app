@@ -1,22 +1,35 @@
 en:
   servers:
     index:
-      title: "List of Servers"
+      title: "Servers List"
       name: "Name"
       username: "Username"
       host: "Host"
       actions: "Actions"
       create_referral: "Create Referral Link"
       add_server: "Add Server"
+      edit: "Edit"
+      destroy: "Delete"
+      copy_password: "Copy Password"
+      confirm_destroy: "Are you sure you want to delete this server?"
+      back: "Back"
     new:
       title: "New Server"
+      submit: "Create"
+    edit:
+      title: "Edit Server"
+      submit: "Save Changes"
     notice:
       created: "Server created!"
+      updated: "Server updated!"
+      destroyed: "Server deleted!"
     alert:
-      access_denied: "Access denied!"
+      access_denied: "Access denied! Only administrators can perform this action."
   referrals:
     notice:
       created: "Referral link created: %{url}"
+      added: "Server %{server} added to your list!"
     alert:
+      error: "Error creating referral link!"
       invalid: "Link is invalid or expired!"
-      error: "Error!"
+      login_required: "Log in to use the referral link!"

@@ -15,11 +15,19 @@
           <td><%= server.username %></td>
           <td><%= server.host %></td>
           <td>
-            <%= link_to t("servers.index.create_referral"), referrals_path(server_id: server.id), method: :post, data: { turbo_method: :post } %>
-            <%= button_tag t("servers.index.copy_password"), class: "copy-password-btn", data: { password: server.password } %>
+            <%= button_tag class: "btn btn-info btn-sm copy-password-btn", data: { password: server.password }, title: t("servers.index.copy_password") do %>
+              <i class="fas fa-copy"></i> <%= t("servers.index.copy_password") %>
+            <% end %>
+            <%= link_to referrals_path(server_id: server.id), method: :post, data: { turbo_method: :post }, class: "btn btn-primary btn-sm", title: t("servers.index.create_referral") do %>
+              <i class="fas fa-link"></i> <%= t("servers.index.create_referral") %>
+            <% end %>
             <% if current_user.admin? %>
-              <%= link_to t("servers.index.edit"), edit_server_path(server), data: { turbo: false } %>
-              <%= link_to t("servers.index.destroy"), server_path(server), method: :delete, data: { turbo_method: :delete, turbo_confirm: t("servers.index.confirm_destroy") } %>
+              <%= link_to edit_server_path(server), data: { turbo: false }, class: "btn btn-warning btn-sm", title: t("servers.index.edit") do %>
+                <i class="fas fa-edit"></i> <%= t("servers.index.edit") %>
+              <% end %>
+              <%= link_to server_path(server), method: :delete, data: { turbo_method: :delete, turbo_confirm: t("servers.index.confirm_destroy") }, class: "btn btn-danger btn-sm", title: t("servers.index.destroy") do %>
+                <i class="fas fa-trash"></i> <%= t("servers.index.destroy") %>
+              <% end %>
             <% end %>
           </td>
           </tr>

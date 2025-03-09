@@ -1,0 +1,26 @@
+<%= form_with(model: server, url: url, method: method, data: { turbo: false }) do |form| %>
+  <% if server.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(server.errors.count, "error") %>:</h2>
+      <ul>
+        <% server.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :name, t("servers.index.name") %>
+  <%= form.text_field :name %>
+
+  <%= form.label :username, t("servers.index.username") %>
+  <%= form.text_field :username %>
+
+  <%= form.label :host, t("servers.index.host") %>
+  <%= form.text_field :host %>
+
+  <%= form.label :password %>
+  <%= form.text_field :password %>
+
+  <%= form.submit submit_text %>
+<% end %>

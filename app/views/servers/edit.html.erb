@@ -1,0 +1,5 @@
+<h1><%= t("servers.edit.title") %></h1>
+
+<%= render "form", server: @server, url: server_path(@server), method: :patch, submit_text: t("servers.edit.submit") %>
+
+<%= link_to t("servers.index.back"), servers_path %>

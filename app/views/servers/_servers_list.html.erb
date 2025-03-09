@@ -14,8 +14,15 @@
           <td><%= server.name %></td>
           <td><%= server.username %></td>
           <td><%= server.host %></td>
-          <td><%= link_to t("servers.index.create_referral"), referrals_path(server_id: server.id), method: :post, data: { turbo_method: :post } %></td>
-        </tr>
+          <td>
+            <%= link_to t("servers.index.create_referral"), referrals_path(server_id: server.id), method: :post, data: { turbo_method: :post } %>
+            <%= button_tag t("servers.index.copy_password"), class: "copy-password-btn", data: { password: server.password } %>
+            <% if current_user.admin? %>
+              <%= link_to t("servers.index.edit"), edit_server_path(server), data: { turbo: false } %>
+              <%= link_to t("servers.index.destroy"), server_path(server), method: :delete, data: { turbo_method: :delete, turbo_confirm: t("servers.index.confirm_destroy") } %>
+            <% end %>
+          </td>
+          </tr>
       <% end %>
     </tbody>
   </table>

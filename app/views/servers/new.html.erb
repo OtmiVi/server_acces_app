@@ -1,24 +1,5 @@
 <h1><%= t("servers.new.title") %></h1>
 
-<%= form_with(model: @server, url: servers_path, method: :post, data: { turbo: false }) do |form| %>
-  <% if @server.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@server.errors.count, "Error") %>:</h2>
-      <ul>
-        <% @server.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render "form", server: @server, url: servers_path, method: :post, submit_text: t("servers.new.submit") %>
 
-  <%= form.label :name, t("servers.index.name") %>
-  <%= form.text_field :name %>
-  <%= form.label :username, t("servers.index.username") %>
-  <%= form.text_field :username %>
-  <%= form.label :host, t("servers.index.host") %>
-  <%= form.text_field :host %>
-  <%= form.label :password %>
-  <%= form.password_field :password %>
-  <%= form.submit %>
-<% end %>
+<%= link_to t("servers.index.back"), servers_path %>

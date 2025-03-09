@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :servers
+  resources :servers, only: [ :index, :new, :create, :edit, :update, :destroy ]
   resources :referrals, only: [ :create, :show ], param: :token
 
   authenticated :user do
